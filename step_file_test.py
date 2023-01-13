@@ -1,0 +1,47 @@
+import numpy as np
+import trimesh
+import pandas as pd
+import requests
+
+API_DOMAIN="http://ai-marketplace-3.uni-paderborn.de"
+API_BASE_PATH="api/v1/collection/document/D000004@/files"
+
+with requests.Session() as session:
+    # provide authentication data to session, will be sent automatically
+    session.auth = ('test', 'test')
+   
+
+    # Use the first request, which uses basic authentication, 
+    # to set the language using the cookie
+    header_response = session.get(API_DOMAIN, 
+                                  cookies={'contact.language': 'en'})
+    #If the connection request is successful, perform below operations
+    if header_response.status_code == 200:        
+        token_response = session.get(f"{API_DOMAIN}/{API_BASE_PATH}")
+        token = token_response.json()
+       # print(token)
+        for f in token['targets']:
+                 if f['cdbf_type'] == 'STL':
+                     stl_file=f["@id"]
+        print(stl_file)
+        data_response=session.get(stl_file)
+        if data_response.status_code == 200:
+            with open(r"C:\Users\Suganthi\Test_Results\test.stl", 'wb') as f:
+                f.write(data_response.content)
+        mesh = trimesh.load(r"C:\Users\Suganthi\Test_Results\test.stl")
+        mesh.scene
+                
+                     
+       
+        
+       
+        
+        
+#mesh = trimesh.load(r'C:\Users\Suganthi\Test_Results\helical bevel gear.stl')
+#vol=mesh.volume
+#data = ([{'volume': mesh.volume,
+#        'area':mesh.area
+#        }])
+#df=pd.DataFrame(data)
+#df
+
