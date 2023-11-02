@@ -9,8 +9,8 @@ import requests
 import pandas as pd
 import json
 
-API_DOMAIN="http://ai-marketplace-3.uni-paderborn.de"
-API_BASE_PATH="api/v1/collection/specification"
+API_DOMAIN="xxxx"
+API_BASE_PATH="xxxx"
 
 with requests.Session() as session:
     # provide authentication data to session, will be sent automatically
