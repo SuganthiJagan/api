@@ -3,8 +3,8 @@ import trimesh
 import pandas as pd
 import requests
 
-API_DOMAIN="http://ai-marketplace-3.uni-paderborn.de"
-API_BASE_PATH="api/v1/collection/document/D000004@/files"
+API_DOMAIN="xxxx"
+API_BASE_PATH="xxxx"
 
 with requests.Session() as session:
     # provide authentication data to session, will be sent automatically
@@ -26,9 +26,9 @@ with requests.Session() as session:
         print(stl_file)
         data_response=session.get(stl_file)
         if data_response.status_code == 200:
-            with open(r"C:\Users\Suganthi\Test_Results\test.stl", 'wb') as f:
+            with open(r"C:\Users\xxx\Test_Results\test.stl", 'wb') as f:
                 f.write(data_response.content)
-        mesh = trimesh.load(r"C:\Users\Suganthi\Test_Results\test.stl")
+        mesh = trimesh.load(r"C:\Users\xxx\Test_Results\test.stl")
         mesh.scene
                 
                      
@@ -37,11 +37,5 @@ with requests.Session() as session:
        
         
         
-#mesh = trimesh.load(r'C:\Users\Suganthi\Test_Results\helical bevel gear.stl')
-#vol=mesh.volume
-#data = ([{'volume': mesh.volume,
-#        'area':mesh.area
-#        }])
-#df=pd.DataFrame(data)
-#df
+
 
